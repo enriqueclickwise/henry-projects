@@ -1,0 +1,90 @@
+<!-- To make custom CW Tables
+
+Author: @emunoz
+Date: 2024-04-02
+Company: Clickwise
+
+-->
+<html lang="es">
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Tabla de Datos</title>
+    <style>
+      table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 2px;
+      }
+
+      th,
+      td {
+        background-color: #E1E791;
+        padding: 8px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+        border-right: 2px solid white;
+      }
+
+      th {
+        background-color: #22A9A9;
+        color: white;
+        border-top: 2px solid white;
+        border-bottom: 2px solid white;
+      }
+
+      td:last-child,
+      th:last-child {
+        border-right: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="text-center">
+      <h1>MAKE YOUR OWN CW TABLE</h1>
+      <table class="table">
+        <thead id="dataColumns">
+          <tr>
+            <th>Column1</th>
+          </tr>
+        </thead>
+        <tbody id="dataRows">
+          <tr>
+            <td>Data1</td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-primary" onclick="addRow()">Agregar Fila</button>
+      <button class="btn btn-primary" onclick="addColumn()">Agregar Columna</button>
+      <script>
+        function addRow() {
+          var tbody = document.getElementById('dataRows');
+          var rowCount = tbody.rows.length + 1;
+          var newRow = document.createElement('tr');
+          for (var i = 0; i < document.getElementById('dataColumns').rows[0].cells.length; i++) {
+            var newCell = document.createElement('td');
+            newCell.textContent = 'Data' + rowCount;
+            newRow.appendChild(newCell);
+          }
+          tbody.appendChild(newRow);
+        }
+
+        function addColumn() {
+          var thead = document.getElementById('dataColumns');
+          var colCount = thead.rows[0].cells.length + 1;
+          var newHeader = document.createElement('th');
+          newHeader.textContent = 'Column' + colCount;
+          thead.rows[0].appendChild(newHeader);
+          var tbody = document.getElementById('dataRows');
+          for (var i = 0; i < tbody.rows.length; i++) {
+            var newRowCell = document.createElement('td');
+            newRowCell.textContent = 'Data' + (i + 1);
+            tbody.rows[i].appendChild(newRowCell);
+          }
+        }
+      </script>
+    </div>
+    <div class="text-center">
+      <img src="https://www.clickwise.net/img/logoslider.png" />
+    </div>
+  </body>
+</html>
